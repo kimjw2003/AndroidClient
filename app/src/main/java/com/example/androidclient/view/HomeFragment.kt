@@ -1,4 +1,4 @@
-package com.example.androidclient.ui.home
+package com.example.androidclient.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
