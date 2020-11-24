@@ -2,18 +2,38 @@ package com.example.androidclient.adapter
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.inflate
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.core.content.res.ColorStateListInflaterCompat.inflate
+import androidx.core.graphics.drawable.DrawableCompat.inflate
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidclient.R
 import com.example.androidclient.data.MyRoomData
+import com.example.androidclient.data.response.RoomListInfo
 
-class MyRoomAdapter(val context: Context, val myRoomData: ArrayList<MyRoomData>) : RecyclerView.Adapter<MyRoomAdapter.Holder>() {
+class MyRoomAdapter(val context: Context, val myRoomData: ArrayList<RoomListInfo>) : RecyclerView.Adapter<MyRoomAdapter.Holder>() {
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        fun bind(data: MyRoomData){
+        val roomName = itemView.findViewById<TextView>(R.id.item_RoomName)
+        val roomOrder = itemView.findViewById<TextView>(R.id.item_RoomOrder)
+
+        fun bind(data: RoomListInfo){
+            roomName.text = data.room
+            if(data.room == "ableToBook") {
+                roomOrder.text = "예약가능"
+                roomOrder.setTextColor(Color.parseColor("#ff000d"))
+            }else if(data.room == "accepted"){
+                roomOrder.text = "예약 불가능"
+                roomOrder.setTextColor(Color.parseColor("#11d154"))
+            } else{
+                roomOrder.text = "승인 대기중"
+            }
 
             itemView.setOnClickListener {
 
