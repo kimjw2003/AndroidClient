@@ -102,7 +102,7 @@
         app:layout_constraintWidth_percent="0.85" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/make_team_team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -123,13 +123,13 @@
         android:layout_marginTop="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/make_team_team_name"
         app:layout_constraintWidth_percent="0.85" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:layout_margin="16dp"
         android:background="@drawable/make_team_card"
         android:elevation="20dp"
@@ -138,6 +138,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view3">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/make_team_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="24dp"
@@ -150,7 +151,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/team_make_people_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -159,7 +160,7 @@
         android:hint="팀원 추가하기"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="@+id/make_team_team_name"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <View
@@ -169,11 +170,12 @@
         android:background="#C4C4C4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/team_make_people_name"
         app:layout_constraintWidth_percent="0.85"
         android:layout_marginTop="6dp"/>
 
     <Button
+        android:id="@+id/team_make_add_team"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.09"
