@@ -3,15 +3,18 @@ package com.example.androidclient.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidclient.R
-import com.example.androidclient.data.MyTeamData
 
-class MyTeamAdapter(val myTeamData: ArrayList<MyTeamData>) : RecyclerView.Adapter<MyTeamAdapter.Holder>() {
+class MyTeamAdapter(val myTeamData: ArrayList<String>) : RecyclerView.Adapter<MyTeamAdapter.Holder>() {
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        fun bind(data : MyTeamData){
+        val teamName = itemView.findViewById<TextView>(R.id.item_TeamName)
+
+        fun bind(data: String){
+            teamName.text = data
 
             itemView.setOnClickListener {
 
