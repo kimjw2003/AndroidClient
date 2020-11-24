@@ -61,11 +61,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     failText!!.visibility = View.INVISIBLE
                     DataBase.getInstance(this@LoginActivity)!!.dao().delete()
                     getUserInfo(userID!!)
-
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    
                 } else {
                     failText!!.text = "아이디나 비밀번호가 일치하지 않습니다."
                     failText!!.visibility = View.VISIBLE
@@ -98,6 +93,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         classs = response.body()!!.numClass,
                         name = response.body()!!.name
                     ))
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
 

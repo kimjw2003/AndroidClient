@@ -44,14 +44,15 @@ class RoomListAdapter(private val roomArrayList : ArrayList<RoomResponse>, val c
 
             roomName.text = item.name
             roomTeacher.text = item.charge
+            roomStatus.text = item.state
 
             when(item.state){
-                "예약가능" -> {
+                "ableToBook" -> {
                     roomStatus.text = "예약가능"
                     roomStatus.setTextColor(Color.parseColor("#0049FF"))
                 }
-                "사용중" -> {
-                    roomStatus.text = "사용중"
+                "WaitForAccept" -> {
+                    roomStatus.text = "승인대기중"
                     roomStatus.setTextColor(Color.parseColor("#FF0000"))
                 }
 

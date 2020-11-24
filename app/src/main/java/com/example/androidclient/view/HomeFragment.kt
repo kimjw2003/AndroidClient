@@ -14,6 +14,7 @@ import com.example.androidclient.adapter.RoomListAdapter
 import com.example.androidclient.data.request.School
 import com.example.androidclient.data.response.RoomResponse
 import com.example.androidclient.retrofit.RetrofitClient
+import com.example.androidclient.room.DataBase
 import com.example.androidclient.sharedpreferences.App
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
@@ -24,6 +25,7 @@ import java.util.*
 class HomeFragment : Fragment() {
 
     var roomList : ArrayList<RoomResponse> = arrayListOf()
+    var date = 0
     val cal = Calendar.getInstance()
 
     override fun onCreateView(
@@ -38,8 +40,8 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        getRoom()
         setDate()
+        getRoom()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,11 +52,13 @@ class HomeFragment : Fragment() {
         arrow_left.setOnClickListener {
             cal.add(Calendar.DATE, -1)
             setDate()
+            getRoom()
         }
 
         arrow_right.setOnClickListener {
             cal.add(Calendar.DATE, +1)
             setDate()
+            getRoom()
         }
     }
 
@@ -64,6 +68,8 @@ class HomeFragment : Fragment() {
         val year = cal.get(Calendar.YEAR).toShort()
         val month = (cal.get(Calendar.MONTH) + 1).toShort()
         val day = (cal.get(Calendar.DATE)).toShort()
+        date = (year.toString() + month.toString() + day.toString()).toInt()
+        Log.d("TAG", date.toString())
         room_list_date.text = ("${year}년 ${month}월 ${day}일")
         App.prefs.setDate("${year}년 ${month}월 ${day}일")
     }
@@ -71,7 +77,9 @@ class HomeFragment : Fragment() {
 
     fun getRoom()
     {
-        RetrofitClient.getInstance().getRoomList(School("all", 20201124)).enqueue(object : Callback<List<RoomResponse>> {
+        Log.d("TAG", "school ${DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school}")
+        Log.d("TAG", "date ${date}")
+        RetrofitClient.getInstance().getRoomList(School(DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school, date)).enqueue(object : Callback<List<RoomResponse>> {
             override fun onResponse(
                 call: Call<List<RoomResponse>>,
                 response: Response<List<RoomResponse>>
