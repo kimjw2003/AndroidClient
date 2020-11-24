@@ -1,10 +1,7 @@
 package com.example.androidclient.retrofit
 
 import com.example.androidclient.data.TeamInfo
-import com.example.androidclient.data.request.Name
-import com.example.androidclient.data.request.School
-import com.example.androidclient.data.request.User
-import com.example.androidclient.data.request.UserRequest
+import com.example.androidclient.data.request.*
 import com.example.androidclient.data.response.GetTeacher
 import com.example.androidclient.data.response.RoomResponse
 import com.example.androidclient.data.response.Status
@@ -61,4 +58,9 @@ interface API {
     fun getMyRoom(
         @Body user: User
     ) : Call<List<String>>
+
+    @POST("room_book")
+    fun bookRoom(
+        @Body bookRoom: BookRoom
+    ) : Call<Status>
 }

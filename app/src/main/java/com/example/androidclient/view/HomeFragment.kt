@@ -69,12 +69,25 @@ class HomeFragment : Fragment() {
         val year = cal.get(Calendar.YEAR).toShort()
         val month = (cal.get(Calendar.MONTH) + 1).toShort()
         val day = (cal.get(Calendar.DATE)).toShort()
-        date = (year.toString() + month.toString() + day.toString()).toInt()
+
+        val monthText : String = if (month <= 9){
+            "0$month"
+        } else {
+            month.toString()
+        }
+
+        val dayText : String = if(day <= 9){
+            "0$day"
+        } else {
+            day.toString()
+        }
+
+        date = (year.toString() + monthText + dayText).toInt()
         Log.d("TAG", date.toString())
-        room_list_date.text = ("${year}년 ${month}월 ${day}일")
-        App.prefs.setDate("${year}년 ${month}월 ${day}일")
 
         setBackGroundColor()
+        room_list_date.text = ("${year}년 ${monthText}월 ${dayText}일")
+        App.prefs.setDate("${year}년 ${monthText}월 ${dayText}일")
     }
 
     fun setBackGroundColor(){
@@ -95,7 +108,7 @@ class HomeFragment : Fragment() {
     fun getRoom()
     {
         Log.d("TAG", "school ${DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school}")
-        Log.d("TAG", "date ${date}")
+        Log.d("TAG", "date $date")
         RetrofitClient.getInstance().getRoomList(School(DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school, date)).enqueue(object : Callback<List<RoomResponse>> {
             override fun onResponse(
                 call: Call<List<RoomResponse>>,
