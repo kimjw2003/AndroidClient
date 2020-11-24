@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
 
     fun getRoom()
     {
-        RetrofitClient.getInstance().getRoomList(School("all")).enqueue(object : Callback<List<RoomResponse>> {
+        RetrofitClient.getInstance().getRoomList(School("all", 20201124)).enqueue(object : Callback<List<RoomResponse>> {
             override fun onResponse(
                 call: Call<List<RoomResponse>>,
                 response: Response<List<RoomResponse>>

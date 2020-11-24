@@ -11,6 +11,5 @@ data class UserDataBase(
     @ColumnInfo(name = "school") var school: String,
     @ColumnInfo(name = "grade") var grade: Int,
     @ColumnInfo(name = "class") var classs: Int,
-    @ColumnInfo(name = "name") var name: String,
-    @ColumnInfo(name = "team") var team: ArrayList<String>
+    @ColumnInfo(name = "name") var name: String
 )

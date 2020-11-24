@@ -1,8 +1,10 @@
 package com.example.androidclient.room
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 
+@Dao
 interface Dao {
     @Query("SELECT * FROM user")
     fun getAll(): List<UserDataBase>
