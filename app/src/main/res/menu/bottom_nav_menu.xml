@@ -5,15 +5,15 @@
 
     <item
         android:id="@+id/navigation_makeTeam"
-        android:icon="@drawable/ic_maketeam_black_24dp"
+        android:icon="@drawable/bottom_nav_make_team_icon"
         android:title="@string/title_makeTeam" />
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/bottom_nav_home_icon"
         android:title="@string/title_home" />
     <item
         android:id="@+id/navigation_myPage"
-        android:icon="@drawable/ic_mypage_black_24dp"
+        android:icon="@drawable/bottom_nav_profile_icon"
         android:title="@string/title_myPage" />
 
 </menu>
