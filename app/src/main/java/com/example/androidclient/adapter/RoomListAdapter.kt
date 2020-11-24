@@ -1,6 +1,7 @@
 package com.example.androidclient.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,10 @@ class RoomListAdapter(private val roomArrayList : ArrayList<RoomListData>) : Rec
         val roomStatus = itemView.findViewById<TextView>(R.id.room_list_room_status)
 
         fun bind(item: RoomListData) {
+
+            roomName.text = item.roomName
+            roomTeacher.text = item.roomTeacher
+
             when(item.roomStatus){
                 "예약가능" -> {
                     roomStatus.text = "예약가능"
@@ -42,6 +47,11 @@ class RoomListAdapter(private val roomArrayList : ArrayList<RoomListData>) : Rec
                     roomStatus.text = "사용중"
                     roomStatus.setTextColor(Color.parseColor("#FF0000"))
                 }
+
+            }
+
+            itemView.setOnClickListener {
+                itemView.context.startActivity(Intent(itemView.context, //상대액티비티))
             }
         }
 
