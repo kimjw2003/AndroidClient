@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AndroidClient</string>
-    <string name="title_home">Home</string>
     <string name="title_makeTeam">makeTeam</string>
+    <string name="title_home">Home</string>
     <string name="title_myPage">myPage</string>
 
 </resources>
