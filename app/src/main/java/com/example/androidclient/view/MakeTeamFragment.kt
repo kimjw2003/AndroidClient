@@ -72,7 +72,7 @@ class MakeTeamFragment : Fragment() {
             .addTeam(
                 TeamInfo(
                     make_team_team_name.text.toString(),
-                    DataBase.getInstance(requireContext())!!.dao().getAll().get(0).name,
+                    DataBase.getInstance(requireContext())!!.dao().getAll().get(0).user,
                     memberList
                 )
             )
