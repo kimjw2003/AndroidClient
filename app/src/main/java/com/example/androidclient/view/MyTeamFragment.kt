@@ -1,5 +1,6 @@
 package com.example.androidclient.view
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,8 +26,14 @@ import retrofit2.Response
 
 class MyTeamFragment : Fragment() {
 
+    lateinit var mContext : Context
     var teamList : ArrayList<String> = arrayListOf()
-    var adapter = MyTeamAdapter(teamList)
+    lateinit var adapter : MyTeamAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
+    }
 
 
     override fun onCreateView(
@@ -50,12 +57,12 @@ class MyTeamFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        school_Tv2.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school
-        name_Tv2.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).name
+        school_Tv2.text = DataBase.getInstance(mContext)!!.dao().getAll().get(0).school
+        name_Tv2.text = DataBase.getInstance(mContext)!!.dao().getAll().get(0).name
         grade_Tv2.text =
-            DataBase.getInstance(requireContext())!!.dao().getAll().get(0).grade.toString()
+            DataBase.getInstance(mContext)!!.dao().getAll().get(0).grade.toString()
         class_Tv2.text =
-            DataBase.getInstance(requireContext())!!.dao().getAll().get(0).classs.toString()
+            DataBase.getInstance(mContext)!!.dao().getAll().get(0).classs.toString()
         getMyTeam()
     }
 
@@ -70,14 +77,14 @@ class MyTeamFragment : Fragment() {
 
     private fun getMyTeam() {
         RetrofitClient.getInstance()
-            .getUserTeam(User(DataBase.getInstance(requireContext())!!.dao().getAll().get(0).user))
+            .getUserTeam(User(DataBase.getInstance(mContext)!!.dao().getAll().get(0).user))
             .enqueue(object : Callback<List<String>>{
                 override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
                     if(response.code() == 200){
                         Log.d("Logd", "data : ${response.body()}")
                         teamList.clear()
                         teamList = response.body() as ArrayList<String>
-                        adapter = MyTeamAdapter(teamList)
+                        adapter = MyTeamAdapter(teamList, mContext)
                         view!!.myTeamRcView.adapter = adapter
                     }
                 }

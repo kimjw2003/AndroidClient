@@ -56,4 +56,9 @@ interface API {
     fun getUserTeam(
         @Body user: User
     ) : Call<List<String>>
+
+    @POST("booked_list")
+    fun getMyRoom(
+        @Body user: User
+    ) : Call<List<String>>
 }
