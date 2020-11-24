@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.androidclient.R
 import com.example.androidclient.adapter.RoomListAdapter
+import com.example.androidclient.data.request.School
 import com.example.androidclient.data.response.RoomResponse
 import com.example.androidclient.retrofit.RetrofitClient
 import com.example.androidclient.sharedpreferences.App
@@ -70,7 +71,7 @@ class HomeFragment : Fragment() {
 
     fun getRoom()
     {
-        RetrofitClient.getInstance().getRoomList().enqueue(object : Callback<List<RoomResponse>> {
+        RetrofitClient.getInstance().getRoomList(School("all")).enqueue(object : Callback<List<RoomResponse>> {
             override fun onResponse(
                 call: Call<List<RoomResponse>>,
                 response: Response<List<RoomResponse>>
