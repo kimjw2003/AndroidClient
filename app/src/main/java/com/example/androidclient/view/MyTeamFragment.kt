@@ -40,4 +40,8 @@ class MyTeamFragment : Fragment() {
             }
         }
     }
+
+    private fun getMyTeam(){
+
+    }
 }

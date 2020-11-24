@@ -40,4 +40,8 @@ class MyRoomFragment : Fragment() {
             }
         }
     }
+
+    private fun getMyRoom(){
+
+    }
 }
