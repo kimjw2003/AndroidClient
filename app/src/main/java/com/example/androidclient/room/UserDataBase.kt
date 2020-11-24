@@ -10,7 +10,7 @@ data class UserDataBase(
     @ColumnInfo(name = "user") var user: String,
     @ColumnInfo(name = "school") var school: String,
     @ColumnInfo(name = "grade") var grade: Int,
-    @ColumnInfo(name = "class") var classs: Long,
-    @ColumnInfo(name = "name") var name : String,
+    @ColumnInfo(name = "class") var classs: Int,
+    @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "team") var team: ArrayList<String>
 )

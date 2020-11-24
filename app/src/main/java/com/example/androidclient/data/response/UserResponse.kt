@@ -8,5 +8,6 @@ data class UserResponse(
     val grade : Int,
     @SerializedName("class")
     val numClass : Int,
-    val team : List<String>
+    val team : List<String>,
+    val name : String
 )
