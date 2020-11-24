@@ -1,5 +1,6 @@
 package com.example.androidclient.view
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -50,6 +51,7 @@ class MyRoomFragment : Fragment() {
         class_Tv.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).classs.toString()
 
         getMyRoom()
+        setBackGroundColor()
     }
 
     private fun setFrag(fragNum : Int) {
@@ -69,9 +71,9 @@ class MyRoomFragment : Fragment() {
                         myRoomList.clear()
                         myRoomList = response.body() as java.util.ArrayList<RoomListInfo>
                         Log.d("TAG", "data $myRoomList")
-                        val mAdapter = MyRoomAdapter(requireContext(), myRoomList)
+                        adapter = MyRoomAdapter(requireContext(), myRoomList)
                         myRoomRcView.setHasFixedSize(true)
-                        myRoomRcView.adapter = mAdapter
+                        myRoomRcView.adapter = adapter
                     }
                 }
 
@@ -79,5 +81,20 @@ class MyRoomFragment : Fragment() {
                     Log.d("Logd", t.message.toString())
                 }
             })
+    }
+
+    private fun setBackGroundColor(){
+        when(DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school)
+        {
+            "대덕" -> {
+                constr.setBackgroundColor(Color.parseColor("#AEF0E6"))
+            }
+            "대구" -> {
+                constr.setBackgroundColor(Color.parseColor("#AED5F8"))
+            }
+            "광주" -> {
+                constr.setBackgroundColor(Color.parseColor("#AEB6FF"))
+            }
+        }
     }
 }

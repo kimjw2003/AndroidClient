@@ -1,6 +1,7 @@
 package com.example.androidclient.view
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -64,6 +65,7 @@ class MyTeamFragment : Fragment() {
         class_Tv2.text =
             DataBase.getInstance(mContext)!!.dao().getAll().get(0).classs.toString()
         getMyTeam()
+        setBackGroundColor()
     }
 
     private fun setFrag(fragNum: Int) {
@@ -94,5 +96,19 @@ class MyTeamFragment : Fragment() {
                 }
 
             })
+    }
+    private fun setBackGroundColor(){
+        when(DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school)
+        {
+            "대덕" -> {
+                constr2.setBackgroundColor(Color.parseColor("#AEF0E6"))
+            }
+            "대구" -> {
+                constr2.setBackgroundColor(Color.parseColor("#AED5F8"))
+            }
+            "광주" -> {
+                constr2.setBackgroundColor(Color.parseColor("#AEB6FF"))
+            }
+        }
     }
 }
