@@ -22,4 +22,10 @@
         android:name="com.example.androidclient.view.MyRoomFragment"
         android:label="@string/title_myPage"
         tools:layout="@layout/fragment_myroom" />
+
+    <fragment
+        android:id="@+id/navigation_myTeam"
+        android:name="com.example.androidclient.view.MyRoomFragment"
+        android:label="@string/title_myPage"
+        tools:layout="@layout/fragment_myteam" />
 </navigation>
