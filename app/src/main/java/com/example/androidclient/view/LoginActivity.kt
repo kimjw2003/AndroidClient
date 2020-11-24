@@ -63,8 +63,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     getUserInfo(userID!!)
 
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
-
                     startActivity(intent)
+                    finish()
+                    
                 } else {
                     failText!!.text = "아이디나 비밀번호가 일치하지 않습니다."
                     failText!!.visibility = View.VISIBLE
