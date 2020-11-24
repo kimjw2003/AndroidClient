@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidclient.R
 import com.example.androidclient.data.RoomListData
@@ -51,7 +52,13 @@ class RoomListAdapter(private val roomArrayList : ArrayList<RoomResponse>, val c
                     roomStatus.text = "예약가능"
                     roomStatus.setTextColor(Color.parseColor("#0049FF"))
                 }
-                "WaitForAccept" -> {
+
+                "accepted" -> {
+                    roomStatus.text = "예약완료"
+                    roomStatus.setTextColor(Color.parseColor("#C4C4C4"))
+                }
+
+                "waitForAccept" -> {
                     roomStatus.text = "승인대기중"
                     roomStatus.setTextColor(Color.parseColor("#FF0000"))
                 }
@@ -59,11 +66,17 @@ class RoomListAdapter(private val roomArrayList : ArrayList<RoomResponse>, val c
             }
 
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, RoomInfoActivity::class.java)
-                intent.putExtra("date", App.prefs.getDate(""))
-                intent.putExtra("roomName", item.name)
-                Log.d("TAG", App.prefs.getDate(""))
-                itemView.context.startActivity(intent)
+                if(item.state == "accepted")
+                {
+                    Toast.makeText(context, "이미 예약되었습니다..", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    val intent = Intent(itemView.context, RoomInfoActivity::class.java)
+                    intent.putExtra("date", App.prefs.getDate(""))
+                    intent.putExtra("roomName", item.name)
+                    Log.d("TAG", App.prefs.getDate(""))
+                    itemView.context.startActivity(intent)
+                }
             }
         }
 
