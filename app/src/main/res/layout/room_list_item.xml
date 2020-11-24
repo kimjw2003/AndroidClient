@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/room_list_image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/room_list_room_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회의실 - 6"
+        android:layout_marginStart="20dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/room_list_teacher_name"
+        app:layout_constraintStart_toEndOf="@+id/room_list_image"
+        app:layout_constraintTop_toTopOf="@+id/room_list_image" />
+
+    <TextView
+        android:id="@+id/room_list_teacher_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="담당 : 박종대"
+        android:layout_marginStart="20dp"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/room_list_image"
+        app:layout_constraintStart_toEndOf="@+id/room_list_image"
+        app:layout_constraintTop_toBottomOf="@+id/room_list_room_name"/>
+
+    <TextView
+        android:id="@+id/room_list_room_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="예약가능"
+        android:layout_marginEnd="16dp"
+        android:textColor="#0049FF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room_list_room_name" />
+
+    <view
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room_list_room_status"
+        app:layout_constraintWidth_percent="0.95"
+        android:layout_marginTop="20dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
