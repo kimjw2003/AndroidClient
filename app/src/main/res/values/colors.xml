@@ -3,4 +3,7 @@
     <color name="colorPrimary">#0049ff</color>
     <color name="colorGray">#6B7684</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorGwangju">#AEB6FF</color>
+    <color name="colorDaeduk">#B7F0E6</color>
+    <color name="colorDaegu">#B6D5F8</color>
 </resources>
