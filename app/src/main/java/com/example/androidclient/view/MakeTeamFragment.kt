@@ -80,6 +80,7 @@ class MakeTeamFragment : Fragment() {
         sweetAlertDialog.show()
 
         val makeTeamDialog = MakeTeamDialog()
+
         RetrofitClient.getInstance()
             .addTeam(
                 TeamInfo(
@@ -90,21 +91,11 @@ class MakeTeamFragment : Fragment() {
             )
             .enqueue(object : Callback<Status> {
                 override fun onResponse(call: Call<Status>, response: Response<Status>) {
-                    if (response.code() == 200) {
-                        Toast.makeText(context, "팀 생성이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                        startActivity(
-                            Intent(
-                                requireActivity().applicationContext,
-                                MainActivity::class.java
-                            )
-                        )
-                    } else {
-                        Toast.makeText(
-                            requireActivity().applicationContext,
-                            "팀 생성이 실패하였습니다.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    makeTeamDialog.connectionSuccess(
+                        response,
+                        requireContext(),
+                        sweetAlertDialog
+                    )
                 }
 
                 override fun onFailure(call: Call<Status>, t: Throwable) {

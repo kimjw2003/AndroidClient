@@ -71,7 +71,10 @@ class MyRoomFragment : Fragment() {
                         myRoomList.clear()
                         myRoomList = response.body() as java.util.ArrayList<RoomListInfo>
                         Log.d("TAG", "data $myRoomList")
-                        adapter = MyRoomAdapter(requireContext(), myRoomList)
+                        adapter = MyRoomAdapter(requireContext(), myRoomList){
+                            getMyRoom()
+                            Log.d("TAG", "호출")
+                        }
                         myRoomRcView.setHasFixedSize(true)
                         myRoomRcView.adapter = adapter
                     }

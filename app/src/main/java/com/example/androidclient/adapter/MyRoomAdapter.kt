@@ -3,6 +3,7 @@ package com.example.androidclient.adapter
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.inflate
@@ -17,7 +18,7 @@ import com.example.androidclient.data.MyRoomData
 import com.example.androidclient.data.response.RoomListInfo
 import com.example.androidclient.dialog.RoomDialog
 
-class MyRoomAdapter(val context: Context, val myRoomData: ArrayList<RoomListInfo>) : RecyclerView.Adapter<MyRoomAdapter.Holder>() {
+class MyRoomAdapter(val context: Context, val myRoomData: ArrayList<RoomListInfo>, private val handler: () -> Unit) : RecyclerView.Adapter<MyRoomAdapter.Holder>() {
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
@@ -37,9 +38,11 @@ class MyRoomAdapter(val context: Context, val myRoomData: ArrayList<RoomListInfo
             }
 
             itemView.setOnClickListener {
-                val dialog = RoomDialog(context, data)
+                val dialog = RoomDialog(context, data){
+                    handler()
+                    Log.d("TAG", "호출3")
+                }
                 dialog.callDialog()
-                notifyDataSetChanged()
 
             }
         }

@@ -18,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RoomDialog(val context: Context, val data : RoomListInfo) : DatePickerDialog.OnDateSetListener {
+class RoomDialog(val context: Context, val data : RoomListInfo, private val handler: () -> Unit) : DatePickerDialog.OnDateSetListener {
     val oldDate = data.date
 
     fun callDialog(){
@@ -48,6 +48,8 @@ class RoomDialog(val context: Context, val data : RoomListInfo) : DatePickerDial
 
                 override fun onResponse(call: Call<Status>, response: Response<Status>) {
                     if(response.isSuccessful){
+                        handler()
+                        Log.d("TAG", "호출2")
                         Toast.makeText(context, "예약이 취소되었습니다", Toast.LENGTH_LONG).show()
                         dialog.dismiss()
                     }
