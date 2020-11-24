@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidclient.R
 import com.example.androidclient.data.MyRoomData
+import com.example.androidclient.data.response.RoomListInfo
 
-class MyRoomAdapter(val context: Context, val myRoomData: ArrayList<MyRoomData>) : RecyclerView.Adapter<MyRoomAdapter.Holder>() {
+class MyRoomAdapter(val context: Context, val myRoomData: ArrayList<RoomListInfo>) : RecyclerView.Adapter<MyRoomAdapter.Holder>() {
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        fun bind(data: MyRoomData){
+        fun bind(data: RoomListInfo){
 
             itemView.setOnClickListener {
 

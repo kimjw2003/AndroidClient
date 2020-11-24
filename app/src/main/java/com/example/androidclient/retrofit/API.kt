@@ -2,10 +2,7 @@ package com.example.androidclient.retrofit
 
 import com.example.androidclient.data.TeamInfo
 import com.example.androidclient.data.request.*
-import com.example.androidclient.data.response.GetTeacher
-import com.example.androidclient.data.response.RoomResponse
-import com.example.androidclient.data.response.Status
-import com.example.androidclient.data.response.UserResponse
+import com.example.androidclient.data.response.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -57,7 +54,7 @@ interface API {
     @POST("booked_list")
     fun getMyRoom(
         @Body user: User
-    ) : Call<List<String>>
+    ) : Call<List<RoomListInfo>>
 
     @POST("room_book")
     fun bookRoom(
