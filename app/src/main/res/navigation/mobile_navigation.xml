@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_makeTeam"
         android:name="com.example.androidclient.view.MakeTeamFragment"
         android:label="@string/title_makeTeam"
         tools:layout="@layout/fragment_maketeam" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.androidclient.view.MyTeamFragment"
+        android:id="@+id/navigation_myPage"
+        android:name="com.example.androidclient.view.MyRoomFragment"
         android:label="@string/title_myPage"
-        tools:layout="@layout/fragment_myPage" />
+        tools:layout="@layout/fragment_myroom" />
 </navigation>

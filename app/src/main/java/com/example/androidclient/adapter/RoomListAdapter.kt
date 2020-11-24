@@ -50,9 +50,9 @@ class RoomListAdapter(private val roomArrayList : ArrayList<RoomListData>) : Rec
 
             }
 
-            itemView.setOnClickListener {
-                itemView.context.startActivity(Intent(itemView.context, //상대액티비티))
-            }
+//            itemView.setOnClickListener {
+//                itemView.context.startActivity(Intent(itemView.context, ))//상대액티비티
+//            }
         }
 
     }
