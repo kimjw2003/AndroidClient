@@ -7,7 +7,7 @@
     tools:context=".view.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/home_constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorDaegu"
@@ -60,9 +60,9 @@
         android:id="@+id/room_list_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/home_constraintLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

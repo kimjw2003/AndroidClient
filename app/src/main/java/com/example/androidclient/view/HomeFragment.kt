@@ -1,11 +1,13 @@
 package com.example.androidclient.view
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -17,6 +19,7 @@ import com.example.androidclient.retrofit.RetrofitClient
 import com.example.androidclient.room.DataBase
 import com.example.androidclient.sharedpreferences.App
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_myroom.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,9 +65,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun setDate()
-    {
-
+    fun setDate() {
         val year = cal.get(Calendar.YEAR).toShort()
         val month = (cal.get(Calendar.MONTH) + 1).toShort()
         val day = (cal.get(Calendar.DATE)).toShort()
@@ -72,8 +73,24 @@ class HomeFragment : Fragment() {
         Log.d("TAG", date.toString())
         room_list_date.text = ("${year}년 ${month}월 ${day}일")
         App.prefs.setDate("${year}년 ${month}월 ${day}일")
+
+        setBackGroundColor()
     }
 
+    fun setBackGroundColor(){
+        when(DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school)
+        {
+            "대덕" -> {
+                home_constraintLayout.setBackgroundColor(Color.parseColor("#AEF0E6"))
+            }
+            "대구" -> {
+                home_constraintLayout.setBackgroundColor(Color.parseColor("#AED5F8"))
+            }
+            "광주" -> {
+                home_constraintLayout.setBackgroundColor(Color.parseColor("#AEB6FF"))
+            }
+        }
+    }
 
     fun getRoom()
     {
@@ -84,12 +101,14 @@ class HomeFragment : Fragment() {
                 call: Call<List<RoomResponse>>,
                 response: Response<List<RoomResponse>>
             ) {
-                roomList.clear()
-                roomList = response.body() as ArrayList<RoomResponse>
-                Log.d("TAG", "data $roomList")
-                val mAdapter = RoomListAdapter(roomList, requireContext())
-                room_list_recyclerview.setHasFixedSize(true)
-                room_list_recyclerview.adapter = mAdapter
+                if (response.code() == 200) {
+                    roomList.clear()
+                    roomList = response.body() as ArrayList<RoomResponse>
+                    Log.d("TAG", "data $roomList")
+                    val mAdapter = RoomListAdapter(roomList, requireContext())
+                    room_list_recyclerview.setHasFixedSize(true)
+                    room_list_recyclerview.adapter = mAdapter
+                }
             }
 
             override fun onFailure(call: Call<List<RoomResponse>>, t: Throwable) {
