@@ -14,6 +14,8 @@ import java.util.*
 
 class HomeFragment : Fragment() {
 
+    var count : Int = 0
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -26,7 +28,18 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setDate()
+
+        arrow_left.setOnClickListener {
+            count--
+            setDate()
+        }
+
+        arrow_right.setOnClickListener {
+            count++
+            setDate()
+        }
     }
 
     fun setDate()
@@ -34,7 +47,7 @@ class HomeFragment : Fragment() {
         val cal = Calendar.getInstance()
         val year = cal.get(Calendar.YEAR).toShort()
         val month = (cal.get(Calendar.MONTH) + 1).toShort()
-        val day = cal.get(Calendar.DATE).toShort()
+        val day = (cal.get(Calendar.DATE) + count).toShort()
         room_list_date.text = ("${year}년 ${month}월 ${day}일")
     }
 }

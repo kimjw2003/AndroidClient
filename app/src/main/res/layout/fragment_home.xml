@@ -32,6 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
+            android:id="@+id/arrow_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -42,6 +43,7 @@
             app:layout_constraintTop_toTopOf="@+id/room_list_date" />
 
         <ImageButton
+            android:id="@+id/arrow_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
