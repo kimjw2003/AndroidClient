@@ -60,6 +60,7 @@ class RoomListAdapter(private val roomArrayList : ArrayList<RoomResponse>, val c
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, RoomInfoActivity::class.java)
                 intent.putExtra("date", App.prefs.getData(""))
+                intent.putExtra("roomName", item.name)
                 Log.d("TAG", App.prefs.getData(""))
                 itemView.context.startActivity(intent)
             }
