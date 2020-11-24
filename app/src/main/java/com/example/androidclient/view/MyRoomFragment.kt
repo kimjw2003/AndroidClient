@@ -1,6 +1,7 @@
 package com.example.androidclient.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import com.example.androidclient.R
 import com.example.androidclient.adapter.MyRoomAdapter
 import com.example.androidclient.data.MyRoomData
+import com.example.androidclient.room.DataBase
 import kotlinx.android.synthetic.main.fragment_myroom.*
 import kotlinx.android.synthetic.main.fragment_myroom.view.*
 import kotlinx.android.synthetic.main.fragment_myteam.*
@@ -29,7 +31,20 @@ class MyRoomFragment : Fragment() {
              myRoomList.clear()
              adapter.notifyDataSetChanged()
         }
+
+
+
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        school_Tv.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school
+        name_Tv.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).name
+        //Log.d("Logd", name_Tv.text.toString())
+        grade_Tv.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).grade.toString()
+        class_Tv.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).classs.toString()
     }
 
     private fun setFrag(fragNum : Int) {

@@ -9,6 +9,8 @@ import com.example.androidclient.R
 import com.example.androidclient.adapter.MyRoomAdapter
 import com.example.androidclient.adapter.MyTeamAdapter
 import com.example.androidclient.data.MyTeamData
+import com.example.androidclient.room.DataBase
+import kotlinx.android.synthetic.main.fragment_myroom.*
 import kotlinx.android.synthetic.main.fragment_myteam.*
 import kotlinx.android.synthetic.main.fragment_myteam.view.*
 
@@ -30,6 +32,16 @@ class MyTeamFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        school_Tv2.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school
+        name_Tv2.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).name
+        //Log.d("Logd", name_Tv.text.toString())
+        grade_Tv2.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).grade.toString()
+        class_Tv2.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).classs.toString()
     }
 
     private fun setFrag(fragNum : Int) {
