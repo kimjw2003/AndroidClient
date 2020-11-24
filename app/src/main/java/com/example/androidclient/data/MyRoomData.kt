@@ -1,4 +1,3 @@
 package com.example.androidclient.data
 
-class MyRoomData {
-}
+data class MyRoomData(val roomName : String, val roomOrder : String)
