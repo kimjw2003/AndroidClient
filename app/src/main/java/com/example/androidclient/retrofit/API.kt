@@ -51,4 +51,9 @@ interface API {
     fun getTeamInfo(
         @Body name: Name
     ) : Call<TeamInfo>
+
+    @POST("user_team")
+    fun getUserTeam(
+        @Body user: User
+    ) : Call<List<String>>
 }

@@ -32,8 +32,6 @@ class MyRoomFragment : Fragment() {
              adapter.notifyDataSetChanged()
         }
 
-
-
         return view
     }
 
@@ -42,7 +40,6 @@ class MyRoomFragment : Fragment() {
 
         school_Tv.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).school
         name_Tv.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).name
-        //Log.d("Logd", name_Tv.text.toString())
         grade_Tv.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).grade.toString()
         class_Tv.text = DataBase.getInstance(requireContext())!!.dao().getAll().get(0).classs.toString()
     }
