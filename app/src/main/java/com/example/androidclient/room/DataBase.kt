@@ -18,7 +18,7 @@ abstract class DataBase : RoomDatabase() {
                 synchronized(UserDataBase::class.java) {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
-                        DataBase::class.java, "memo.db"
+                        DataBase::class.java, "user.db"
                     )
                         .fallbackToDestructiveMigration()
                         .allowMainThreadQueries()

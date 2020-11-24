@@ -10,9 +10,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidclient.R
 import com.example.androidclient.data.RoomListData
+import com.example.androidclient.data.response.RoomResponse
 import org.w3c.dom.Text
 
-class RoomListAdapter(private val roomArrayList : ArrayList<RoomListData>) : RecyclerView.Adapter<RoomListAdapter.ViewHolder>() {
+class RoomListAdapter(private val roomArrayList : ArrayList<RoomResponse>) : RecyclerView.Adapter<RoomListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.room_list_item, parent, false)
@@ -33,12 +34,12 @@ class RoomListAdapter(private val roomArrayList : ArrayList<RoomListData>) : Rec
         val roomTeacher = itemView.findViewById<TextView>(R.id.room_list_teacher_name)
         val roomStatus = itemView.findViewById<TextView>(R.id.room_list_room_status)
 
-        fun bind(item: RoomListData) {
+        fun bind(item: RoomResponse) {
 
-            roomName.text = item.roomName
-            roomTeacher.text = item.roomTeacher
+            roomName.text = item.name
+            roomTeacher.text = item.charge
 
-            when(item.roomStatus){
+            when(item.state){
                 "예약가능" -> {
                     roomStatus.text = "예약가능"
                     roomStatus.setTextColor(Color.parseColor("#0049FF"))
