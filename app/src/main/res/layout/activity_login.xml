@@ -18,37 +18,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editID"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editID_Out"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="36dp"
-        android:ems="8"
-        android:hint="ID"
-        android:inputType="textPersonName"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
-
-    <EditText
-        android:id="@+id/editPW"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_height="0dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="36dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editID" />
+        app:layout_constraintTop_toBottomOf="@id/logo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="ID" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editPW_Out"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editID_Out">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editPW"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+            android:hint="PW" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/failText"
@@ -59,7 +72,7 @@
         android:textColor="#FF0000"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPW" />
+        app:layout_constraintTop_toBottomOf="@+id/editPW_Out" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -74,6 +87,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPW" />
+        app:layout_constraintTop_toBottomOf="@+id/failText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
