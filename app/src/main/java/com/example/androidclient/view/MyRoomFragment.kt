@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.androidclient.R
 
-class Fragment_mypage2 : Fragment() {
+class MyRoomFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_mypage2, container, false)
+        return inflater.inflate(R.layout.fragment_myroom, container, false)
     }
 
 }

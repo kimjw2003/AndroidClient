@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.androidclient.view.MyPageFragment"
+        android:name="com.example.androidclient.view.MyTeamFragment"
         android:label="@string/title_myPage"
         tools:layout="@layout/fragment_myPage" />
 </navigation>
