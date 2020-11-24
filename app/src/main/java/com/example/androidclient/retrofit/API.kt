@@ -60,4 +60,14 @@ interface API {
     fun bookRoom(
         @Body bookRoom: BookRoom
     ) : Call<Status>
+
+    @POST("book_change")
+    fun bookChange(
+        @Body changeBook: ChangeBook
+    ) : Call<Status>
+
+    @POST("book_cancel")
+    fun bookDelete(
+        @Body bookDelete: BookDelete
+    ) : Call<Status>
 }

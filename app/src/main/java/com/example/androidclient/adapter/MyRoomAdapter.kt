@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidclient.R
 import com.example.androidclient.data.MyRoomData
 import com.example.androidclient.data.response.RoomListInfo
+import com.example.androidclient.dialog.RoomDialog
 
 class MyRoomAdapter(val context: Context, val myRoomData: ArrayList<RoomListInfo>) : RecyclerView.Adapter<MyRoomAdapter.Holder>() {
 
@@ -32,19 +33,14 @@ class MyRoomAdapter(val context: Context, val myRoomData: ArrayList<RoomListInfo
                 roomOrder.text = "예약 불가능"
                 roomOrder.setTextColor(Color.parseColor("#11d154"))
             } else{
-                roomOrder.text = "승인 대기중"
+                roomOrder.text = "승인 대기"
             }
 
             itemView.setOnClickListener {
+                val dialog = RoomDialog(context, data)
+                dialog.callDialog()
+                notifyDataSetChanged()
 
-                val builder = AlertDialog.Builder(context)
-                val dialogView = LayoutInflater.from(context).inflate(R.layout.room_dialog, null)
-                builder.setView(dialogView)
-                    .setTitle("")
-                    .setMessage("")
-                    .setNegativeButton("확인"){
-                        dialogView, which->
-                    }.show()
             }
         }
     }
