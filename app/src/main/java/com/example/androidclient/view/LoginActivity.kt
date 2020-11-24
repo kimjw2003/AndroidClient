@@ -1,16 +1,19 @@
 package com.example.androidclient.view
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.androidclient.R
 import com.example.androidclient.data.request.User
 import com.example.androidclient.data.request.UserRequest
 import com.example.androidclient.data.response.Status
 import com.example.androidclient.data.response.UserResponse
+import com.example.androidclient.module.SignInDialog
 import com.example.androidclient.retrofit.RetrofitClient
 import com.example.androidclient.room.DataBase
 import com.example.androidclient.room.UserDataBase
@@ -42,6 +45,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             failText!!.visibility = View.VISIBLE
             Log.d("TAG", "아이디나 비밀번호는 비워둘 수 없습니다.")
         }
+
         Log.d("TAG", "UserID: $userID UserPW: $userPW")
         val retrofitClient = RetrofitClient.getInstance()
         val call =
@@ -59,7 +63,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 if (response.isSuccessful) {
                     Log.d("TAG", "성공 $response")
                     failText!!.visibility = View.INVISIBLE
-                    DataBase.getInstance(this@LoginActivity)!!.dao().delete()
+                    DataBase.getInstance(applicationContext)!!.dao().delete()
                     getUserInfo(userID!!)
                 } else {
                     failText!!.text = "아이디나 비밀번호가 일치하지 않습니다."
@@ -80,23 +84,25 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     fun getUserInfo(id : String){
 
+        val sweetAlertDialog =
+            SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
+        sweetAlertDialog.progressHelper.barColor = Color.parseColor("#0DE930")
+        sweetAlertDialog
+            .setTitleText("로그인중")
+            .setCancelable(false)
+        sweetAlertDialog.show()
+
+        val signInDialog = SignInDialog()
+
         RetrofitClient.getInstance().getUser(User(id)).enqueue(object : Callback<UserResponse>{
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {}
 
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                if(response.isSuccessful){
-                    DataBase.getInstance(this@LoginActivity)!!.dao().insert(UserDataBase(
-                        id = 0,
-                        user = response.body()!!.user,
-                        school = response.body()!!.school,
-                        grade = response.body()!!.grade,
-                        classs = response.body()!!.numClass,
-                        name = response.body()!!.name
-                    ))
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
+                signInDialog.connectionSuccess(
+                    response,
+                    this@LoginActivity,
+                    sweetAlertDialog
+                )
             }
 
         })

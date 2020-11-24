@@ -1,6 +1,7 @@
 package com.example.androidclient.view
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.androidclient.R
 import com.example.androidclient.adapter.MakeTeamAdapter
 import com.example.androidclient.data.MakeTeamData
 import com.example.androidclient.data.TeamInfo
 import com.example.androidclient.data.response.Status
+import com.example.androidclient.module.MakeTeamDialog
 import com.example.androidclient.retrofit.RetrofitClient
 import com.example.androidclient.room.DataBase
 import kotlinx.android.synthetic.main.fragment_maketeam.*
@@ -68,6 +71,15 @@ class MakeTeamFragment : Fragment() {
     }
 
     fun postTeam() {
+        val sweetAlertDialog =
+            SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE)
+        sweetAlertDialog.progressHelper.barColor = Color.parseColor("#0DE930")
+        sweetAlertDialog
+            .setTitleText("로딩중")
+            .setCancelable(false)
+        sweetAlertDialog.show()
+
+        val makeTeamDialog = MakeTeamDialog()
         RetrofitClient.getInstance()
             .addTeam(
                 TeamInfo(
